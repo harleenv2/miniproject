@@ -59,10 +59,6 @@ void rules();
 
 int main(int argc, char *argv[])
 {
-	if(argc < 2){
-		perror("bad arguements\n");
-		return EINVAL;
-	}
 	
 	if(strcmp(argv[1] , "-h") == 0){
 		rules();
