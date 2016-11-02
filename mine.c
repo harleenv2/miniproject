@@ -453,7 +453,10 @@ void check(matrix e[11][11], int i, int j)/*to unlock a tile present at the coor
 	e[i][j].lock = 0;
 }
 void rules(){
-	printf("");
-	printf("");
-	printf("");
+	printf("Uncover a mine, and the game ends.Uncover an empty square, and you keep playing.Uncover a number, and it tells you how many mines lay hidden in the eight surrounding squares—information you use to deduce which nearby squares are safe to click.
+\n");
+	printf("to unclock - exy and press enter\n");
+	printf("to flag - fxy and press enter\n");
+	printf("to remove flag - gxy and press enter\n");
+	       }
 	
