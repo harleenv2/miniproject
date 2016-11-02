@@ -185,9 +185,9 @@ return 0;
         c=getchar();
  
 	}
-        
+	}
 	return 0;
-	}}
+	}
 int findempty(int new[16][16],int list[256][2])//find the empty tiles
 {
   int l=0 , i , j;
