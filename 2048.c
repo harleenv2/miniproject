@@ -3,7 +3,7 @@
 ==============================================================================================================================================
  * Name        : 2048.c
  * Author      : harleen virk (S.Y.Btech in Computer Engineering from CoEP)
- * Description : Console version of the snake game for GNU/Linux
+ * Description : Console version of the 2048 game for GNU/Linux
  * Copyright (C) harleen virk ID : hrlnvirk78@gmail.com
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -60,7 +60,7 @@ void rules();
 int main(int argc, char *argv[])
 {
 	
-	if(strcmp(argv[1] , "-h") == 0){
+	if(argc>1 &&strcmp(argv[1] , "-h") == 0){
 		rules();
 		return 0;
 	}
