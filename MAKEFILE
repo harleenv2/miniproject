@@ -3,7 +3,3 @@ try: 2048.o
 2048.o: 2048.c
 	cc -Wall -c 2048.c
 
-try: mine.o 
-	cc mine.o -o try
-mine.o: mine.c
-	cc -Wall -c mine.c
