@@ -1,4 +1,4 @@
-try: mine.o 
-	cc mine.o -o try
+project: mine.o 
+	cc mine.o -o project
 mine.o: mine.c
 	cc -Wall -c mine.c
