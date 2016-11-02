@@ -45,7 +45,7 @@ the presence of a mine)*/
 #include<error.h>
 #include<errno.h>
 
-char discalculate(int real, int lock) /*to calculate display*
+char discalculate(int real, int lock) /*to calculate display*/
 {
 	if (lock == 2)
 	{
