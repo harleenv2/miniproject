@@ -96,8 +96,22 @@ bool gameover(matrix e[11][11]);
 bool gamewon(matrix e[11][11]);
 //void ifzero(matrix e[11][11], int i, int j);
 void check(matrix e[11][11], int a, int b);
-int main()
+void rules();
+
+int main(int argc, char *argv[])
 {
+	if(argc < 2){
+		perror("bad arguements"\n);
+		return EINVAL;
+	}
+	
+	if(strcmp(argv[1] , "-h") == 0){
+		rules();
+		return 0;
+	}
+	
+	else{
+		
 	matrix e[11][11];/*create a two-dimensional array of size 11*11.note- the objectsrepresented by e[x][0],e[0][x],e[10][x] and e[x][10] wont be represented on the screen. */
 	initiate(e);
 	 slate(e);
@@ -438,3 +452,8 @@ void check(matrix e[11][11], int i, int j)/*to unlock a tile present at the coor
 	}
 	e[i][j].lock = 0;
 }
+void rules(){
+	printf("");
+	printf("");
+	printf("");
+	
