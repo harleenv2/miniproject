@@ -40,6 +40,7 @@ the presence of a mine)*/
 #include<ctype.h>
 #include<fcntl.h>
 #include<sys/types.h>
+//#include<sys/sts.h>
 #include<unistd.h>
 #include<error.h>
 #include<errno.h>
@@ -100,7 +101,7 @@ void rules();
 int main(int argc, char *argv[])
 {
 	if(argc < 2){
-		perror("bad arguements"\n);
+		perror("bad arguements\n");
 		return EINVAL;
 	}
 	
@@ -203,7 +204,7 @@ int main(int argc, char *argv[])
                 c=getchar();
 	}
 	return 0;
-}
+}}
 void un(matrix e[11][11],int i,int j)/*unlock neighbouring tiles(to i,j)*/
 {
 	int x , y ;
@@ -452,10 +453,10 @@ void check(matrix e[11][11], int i, int j)/*to unlock a tile present at the coor
 	e[i][j].lock = 0;
 }
 void rules(){
-	printf("Uncover a mine, and the game ends.Uncover an empty square, and you keep playing.Uncover a number, and it tells you how many mines lay hidden in the eight surrounding squares—information you use to deduce which nearby squares are safe to click.
-\n");
+	printf("Uncover a mine, and the game ends.Uncover an empty square, and you keep playing.Uncover a number, and ");
+        printf("it tells you how many mines lay hidden in the eight surrounding squaresâ€”information ");
+        printf("you use to deduce which nearby squares are safe to click.\n");
 	printf("to unclock - exy and press enter\n");
 	printf("to flag - fxy and press enter\n");
 	printf("to remove flag - gxy and press enter\n");
-	       }
-	
+}
