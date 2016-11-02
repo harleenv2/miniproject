@@ -1,3 +1,4 @@
+
 /*
 ==============================================================================================================================================
  * Name        : 2048.c
@@ -19,7 +20,6 @@
  * along with this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 ==============================================================================================================================================
-
 */
 
 
@@ -60,7 +60,7 @@ void rules();
 int main(int argc, char *argv[])
 {
 	if(argc < 2){
-		perror("bad arguements"\n);
+		perror("bad arguements\n");
 		return EINVAL;
 	}
 	
@@ -92,8 +92,8 @@ printf("enter the dimensions of the grid \n");
         char c;//
 	initialize(new);
         restoreold(new,old);
-	display(new);
-	while(c=getchar())//input command
+	display(new);c=getchar();
+	while(true)//input command
 	{
 		
 		switch(c) 
@@ -143,16 +143,13 @@ printf("enter the dimensions of the grid \n");
 		  {
 		  score=0;
 		  system("clear");
- printf("          _______  ________  ___   ___  ________ _______ \n ");
-	printf(	" /  ___  \\|\\   __  \\|\\  \\ |\\  \\|\\   __  \\   \n ");
-	printf(	"/__/|_/  /\\ \\  \\|\\  \\ \\  \\\\_\\  \\ \\  \\|\\  \\  \n ");
-	printf(	"|__|//  / /\\ \\  \\\\\\  \\ \\______  \\ \\   __  \\  \n");
-	printf(	"    /  /_/__\\ \\  \\\\\\  \\|_____|\\  \\ \\  \\|\\  \\\n ");
-	printf(	"   |\\________\\ \\_______\\     \\ \\__\\ \\_______\\\n");
-	printf(	"    \\|_______|\\|_______|      \\|__|\\|_______|\n");
-	
-
-
+                  printf("          _______  ________  ___   ___  ________ _______ \n ");
+	          printf(	" /  ___  \\|\\   __  \\|\\  \\ |\\  \\|\\   __  \\   \n ");
+	          printf(	"/__/|_/  /\\ \\  \\|\\  \\ \\  \\\\_\\  \\ \\  \\|\\  \\  \n ");
+	          printf(	"|__|//  / /\\ \\  \\\\\\  \\ \\______  \\ \\   __  \\  \n");
+	          printf(	"    /  /_/__\\ \\  \\\\\\  \\|_____|\\  \\ \\  \\|\\  \\\n ");
+	          printf(	"   |\\________\\ \\_______\\     \\ \\__\\ \\_______\\\n");
+	          printf(	"    \\|_______|\\|_______|      \\|__|\\|_______|\n");
 printf("The goal of the game is to merge numbers together (powers of 2) in order to reach the ultimate '2048' tile and win the game !\n");
 
 printf("enter the dimensions of the grid \n"); 
@@ -189,12 +186,12 @@ return 0;
 		        Random(new);
 			display(new);			
 		}
+        c=getchar();
  
-	}
 	}
         
 	return 0;
-	}
+	}}
 int findempty(int new[16][16],int list[256][2])//find the empty tiles
 {
   int l=0 , i , j;
@@ -425,7 +422,7 @@ bool right(int new[16][16],int old[16][16]) //swipe right
 
 bool gameover(int new[16][16])//check if the game has been lost
 {
-  int i, j,list[256][2];
+  int list[256][2];
   if(findempty(new,list)>0)
     {
       return 0;
