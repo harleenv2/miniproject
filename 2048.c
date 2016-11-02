@@ -28,7 +28,16 @@
 #include <stdbool.h>
 #include <time.h>
 #include<stdlib.h>
-#include<ncurses.h>
+#include<string.h>
+#include<limits.h>
+#include<ctype.h>
+#include<fcntl.h>
+#include<sys/types.h>
+#include<sys/sts.h>
+#include<unistd.h>
+#include<error.h>
+#include<errno.h>
+
 
 int size=4,score = 0;//define size of the grid,initialize the score and previous score(scorep) as 0
 int scorep=0;
@@ -47,10 +56,22 @@ bool left(int new[16][16],int old[16][16]);
 bool down(int new[16][16],int old[16][16]);
 bool right(int new[16][16],int old[16][16]);
 bool gameover(int new[16][16]);
+void rules();
 
-
-int main()
+int main(int argc, char *argv[])
 {
+	if(argc < 2){
+		perror("bad arguements"\n);
+		return EINVAL;
+	}
+	
+	if(strcmp(argv[1] , "-h") == 0){
+		rules();
+		return 0;
+	}
+	
+	else{
+		
  printf("          _______  ________  ___   ___  ________ _______ \n ");
 	printf(	" /  ___  \\|\\   __  \\|\\  \\ |\\  \\|\\   __  \\   \n ");
 	printf(	"/__/|_/  /\\ \\  \\|\\  \\ \\  \\\\_\\  \\ \\  \\|\\  \\  \n ");
@@ -422,4 +443,11 @@ bool gameover(int new[16][16])//check if the game has been lost
 rotate(new);
 rotate(new);
   return 1;
+}
+	
+void rules(){
+	printf("The objective of the game is to get the number 2048 using additions of the number two and its multiples.");
+	printf("game can be played using arrows or letter a,s,d,w  \n");
+	printf("we can select the grid size from 2-16\n");
+	printf("there is an option to quit restart and undo\n");
 }
