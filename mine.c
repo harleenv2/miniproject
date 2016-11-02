@@ -40,7 +40,6 @@ the presence of a mine)*/
 #include<ctype.h>
 #include<fcntl.h>
 #include<sys/types.h>
-#include<sys/sts.h>
 #include<unistd.h>
 #include<error.h>
 #include<errno.h>
