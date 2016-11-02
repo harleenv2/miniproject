@@ -201,7 +201,7 @@ int main(int argc, char *argv[]){
                 c=getchar();
 	}
 	return 0;
-}
+}}
 void un(matrix e[11][11],int i,int j)/*unlock neighbouring tiles(to i,j)*/
 {
 	int x , y ;
