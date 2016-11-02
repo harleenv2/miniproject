@@ -40,12 +40,12 @@ the presence of a mine)*/
 #include<ctype.h>
 #include<fcntl.h>
 #include<sys/types.h>
-//#include<sys/sts.h>
+
 #include<unistd.h>
 #include<error.h>
 #include<errno.h>
 
-char discalculate(int real, int lock) /*to calculate display*/
+char discalculate(int real, int lock) /*to calculate display*
 {
 	if (lock == 2)
 	{
@@ -98,12 +98,7 @@ bool gamewon(matrix e[11][11]);
 void check(matrix e[11][11], int a, int b);
 void rules();
 
-int main(int argc, char *argv[])
-{
-	if(argc < 2){
-		perror("bad arguements\n");
-		return EINVAL;
-	}
+int main(int argc, char *argv[]){
 	
 	if(strcmp(argv[1] , "-h") == 0){
 		rules();
