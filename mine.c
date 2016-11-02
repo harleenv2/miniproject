@@ -30,11 +30,20 @@ respectively).3-real-represents what is actually present in the tile.(note. -1 r
 the presence of a mine)*/
 
 
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <time.h>
-#include<string.h>
 #include<stdlib.h>
+#include<string.h>
+#include<limits.h>
+#include<ctype.h>
+#include<fcntl.h>
+#include<sys/types.h>
+#include<sys/sts.h>
+#include<unistd.h>
+#include<error.h>
+#include<errno.h>
 
 char discalculate(int real, int lock) /*to calculate display*/
 {
