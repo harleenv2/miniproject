@@ -21,7 +21,7 @@
  * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
 ==========================================================================================
 ==============================================
-/*the following is a program for the classic game minesweeper played on a 9*9 grid.Each 
+the following is a program for the classic game minesweeper played on a 9*9 grid.Each 
 tile is represented by the user defined datatype grid/matrix.Each tile has 2 components.1
 -lock-might hold values 0,1,2(representing the status of the tile as unlocked,locked and 
 flagged respectively),2.-display-regarding what is actually displayed on the screen.(the 
@@ -454,7 +454,7 @@ void check(matrix e[11][11], int i, int j)/*to unlock a tile present at the coor
 }
 void rules(){
 	printf("Uncover a mine, and the game ends.Uncover an empty square, and you keep playing.Uncover a number, and ");
-        printf("it tells you how many mines lay hidden in the eight surrounding squaresâ€”information ");
+        printf("it tells you how many mines lay hidden in the eight surrounding squaresÃ¢â‚¬â€information ");
         printf("you use to deduce which nearby squares are safe to click.\n");
 	printf("to unclock - exy and press enter\n");
 	printf("to flag - fxy and press enter\n");
