@@ -1,14 +1,39 @@
+/*
+==============================================================================================================================================
+ * Name        : 2048.c
+ * Author      : harleen virk (S.Y.Btech in Computer Engineering from CoEP)
+ * Description : Console version of the snake game for GNU/Linux
+ * Copyright (C) harleen virk ID : hrlnvirk78@gmail.com
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation; either version 2.1 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Lesser General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+==============================================================================================================================================
+
+*/
+
+
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <time.h>
+#include<stdlib.h>
+#include<ncurses.h>
 
-
-//#define size 4
-int size=4,score = 0;
+int size=4,score = 0;//define size of the grid,initialize the score and previous score(scorep) as 0
 int scorep=0;
 
-
-int findempty(int new[16][16],int list[64][2]);
+int findempty(int new[16][16],int list[256][2]);
 void Random(int new[16][16]);
 void restoreold(int new[16][16],int old[16][16]);
 void display(int new[16][16]);
@@ -22,9 +47,11 @@ bool left(int new[16][16],int old[16][16]);
 bool down(int new[16][16],int old[16][16]);
 bool right(int new[16][16],int old[16][16]);
 bool gameover(int new[16][16]);
+
+
 int main()
 {
-        printf("          _______  ________  ___   ___  ________ _______ \n ");
+ printf("          _______  ________  ___   ___  ________ _______ \n ");
 	printf(	" /  ___  \\|\\   __  \\|\\  \\ |\\  \\|\\   __  \\   \n ");
 	printf(	"/__/|_/  /\\ \\  \\|\\  \\ \\  \\\\_\\  \\ \\  \\|\\  \\  \n ");
 	printf(	"|__|//  / /\\ \\  \\\\\\  \\ \\______  \\ \\   __  \\  \n");
@@ -36,88 +63,105 @@ int main()
 
 printf("The goal of the game is to merge numbers together (powers of 2) in order to reach the ultimate '2048' tile and win the game !\n");
 
-printf("enter the dimensions of the grid \n");      
- scanf("%d",&size);
- 
- 
+printf("enter the dimensions of the grid \n"); 
+      scanf("%d",&size);
+
+
 	int new[16][16],old[16][16];
 	bool move = 0;
         char c;//
 	initialize(new);
         restoreold(new,old);
-	display(new);//c=getchar();
-	while(c=getchar())
+	display(new);
+	while(c=getchar())//input command
 	{
 		
 		switch(c) 
 		{
-			case 97:
+			case 97://swipe left
 			  {
 				move= left(new,old);  
-        break;
+				break;
 			  }	
 			case 68:
 			  {
-				move= left(new,old);  
-        break;
+				move= left(new,old); 
+				 break;
 			  }	
-			case 100:
+			case 100://swipe right
 			  {
 				move = right(new,old); 
-        break;
+				break;
 			  }	
 			case 67:
 			  {
-				move = right(new,old);
-        break;
+				move = right(new,old); 
+				break;
 			  }	
-			case 119:
+			case 119://swipe up
                           {
-			         move = up(new,old);    
-               break;
+			         move = up(new,old);   
+				 break;
 			  }	
 			case 65:
 			  {
-			         move = up(new,old);    
-               break;
+			         move = up(new,old);  
+				  break;
 			  }	
-			case 115:
+			case 115://swipe down
 			  {
-				move = down(new,old); 
-        break;
+				move = down(new,old);
+				  break;
 			  } 	
 			case 66:
 			  {
-				move = down(new,old); 
-        break; 
+				move = down(new,old);
+				 break; 
 			  } 
                    
-		case 'r':
+		case 'r'://for input 'r' restart the game
 		  {
 		  score=0;
 		  system("clear");
+ printf("          _______  ________  ___   ___  ________ _______ \n ");
+	printf(	" /  ___  \\|\\   __  \\|\\  \\ |\\  \\|\\   __  \\   \n ");
+	printf(	"/__/|_/  /\\ \\  \\|\\  \\ \\  \\\\_\\  \\ \\  \\|\\  \\  \n ");
+	printf(	"|__|//  / /\\ \\  \\\\\\  \\ \\______  \\ \\   __  \\  \n");
+	printf(	"    /  /_/__\\ \\  \\\\\\  \\|_____|\\  \\ \\  \\|\\  \\\n ");
+	printf(	"   |\\________\\ \\_______\\     \\ \\__\\ \\_______\\\n");
+	printf(	"    \\|_______|\\|_______|      \\|__|\\|_______|\n");
+	
+
+
+printf("The goal of the game is to merge numbers together (powers of 2) in order to reach the ultimate '2048' tile and win the game !\n");
+
+printf("enter the dimensions of the grid \n"); 
+     
+ scanf("%d",&size);
+		system("clear");
 		  initialize(new);
                   restoreold(new,old);
                   display(new);
                   c=getchar();break;
 		  }
-		case 'u':
+		case 'u'://for input 'u' undo the move
 		{
 		  score=scorep;
 		  restoreold(old,new);
 		  display(old);
 		  break;
 		}
-case 'q':
+case 'q'://for input 'q' quit the game
 {
 return 0;
 }
                 default: move = 0;
                 }
-		if(gameover(new)==1)
+		if(gameover(new)==1)//check if the game has been lost
 		{
 			system("clear");
-			printf("\n\n\n\t\t\tGAME OVER!!! ( :-( )...YOU LOST");
+			printf("\n\n\n\t\t\tGAME OVER!!! ( :-( )...YOU LOST\f\f");
+			
 			break;
 		}				
 		if(move==1)
@@ -125,17 +169,17 @@ return 0;
 		        Random(new);
 			display(new);			
 		}
- //     c=getchar();
-	}//system("stty cooked");
+ 
+	}
         
 	return 0;
 	}
-int findempty(int new[16][16],int list[64][2])
+int findempty(int new[16][16],int list[256][2])//find the empty tiles
 {
-  int l=0;
-  for (int i = 0; i < size; i++)
+  int l=0 , i , j;
+  for ( i = 0; i < size; i++)
 	{
-		for(int j = 0; j < size; j++)
+		for( j = 0; j < size; j++)
 		{
 			if(new[i][j] == 0)
 			{
@@ -146,9 +190,9 @@ int findempty(int new[16][16],int list[64][2])
 	}
 	return l;
 }
-void Random(int new[16][16])
+void Random(int new[16][16])//randomly select an empty tile and plce a number(either 2 or 4) at it
 {
-  int  select, list[64][2],r;
+  int  select, list[256][2],r;
   int l=findempty(new,list);
   srand(time(NULL));
   if(l > 0)
@@ -158,52 +202,70 @@ void Random(int new[16][16])
 		new[list[select][0]][list[select][1]]=r;
     }
 }
-void restoreold(int new[16][16],int old[16][16])
+void restoreold(int new[16][16],int old[16][16])//initialize the old[][] grid as a copy of the new[][] grid
 {
-  for(int i=0;i<size;i++)
+int i , j ;
+  for( i=0;i<size;i++)
     {
-      for(int j=0;j<size;j++)
+      for( j=0;j<size;j++)
 	{
 	  old[i][j]=new[i][j];
 	}
     }
 }
-void display(int new[16][16])
+void display(int new[16][16])//display
 {
+	int i , j ;
 	char empty = '_';
 	system("clear");
 	printf("\n\n");
+
 	printf("\t\t\t     TWO ZERO FOUR EIGHT (2048 :-) )\n");
+
         printf("\t\t Use the arrow keys or the w,s,a,d keys to play \n\n");
+
 printf("\t\t\t\t\t\tYOUR SCORE IS: %d\n\n", score);
+
 	printf("\n\n\t\t\t         \n");
-	for(int i = 0; i < size; i++)
+
+	for( i = 0; i < size; i++)
 	{
 		printf("\t\t");
-		for(int j = 0; j < size; j++)
+
+
+		for( j = 0; j < size; j++)
 		{
 			if(j != size - 1)
 				if(new[i][j] == 0)
 					printf(" %5c  |", empty);
+
 				else
 					printf(" %5d  |", new[i][j]);
+
 			else
 				if(new[i][j] == 0)
 					printf(" %5c  ", empty);
+
 				else
 					printf(" %5d  ", new[i][j]);
+
 		}
 		printf("\n");
+
 			printf("\t\t\t           ");
+
 		printf("\n");
+
 	}
 	printf("\n");
+
 	
 	
 	printf("\n\t\t Press key 'q' to QUIT program;\nPress 'u' to undo and 'r' to restart\n");
+
 }
 
-void initialize(int new[16][16])
+void initialize(int new[16][16])//initialize the grid
 {
 	int i, j;
 	for(i = 0; i < size; i++)
@@ -217,11 +279,12 @@ void initialize(int new[16][16])
 	Random(new);
 }
 
-bool pairexist(int new[16][16])
+bool pairexist(int new[16][16])//find if a possible pair i.e. a pair of two consecutive tiles having the same number, exists
 {
-	for(int i = 0; i < size; i++)
+int i , j ;
+	for( i = 0; i < size; i++)
 	{
-		for(int j = 0; j < size - 1; j++)
+		for( j = 0; j < size - 1; j++)
 		{
 			if(new[i][j] == new[i][j + 1])
 			{
@@ -232,9 +295,9 @@ bool pairexist(int new[16][16])
 	return 0;
 }
 
-bool slidel(int new[size])
+bool slidel(int new[size])//slide left along the given row
 {
-	int i, j, temp, flag[8],k=0;// = {0, 0, 0, 0};
+	int i, j, temp, flag[16],k=0;// = {0, 0, 0, 0};
         for(i=0;i<size;i++)
         {
         flag[i]=0;
@@ -274,7 +337,7 @@ bool slidel(int new[size])
 	return move;
 }
 
-void rotate(int new[16][16])
+void rotate(int new[16][16])//rotate
 {
 	int i, j, temp ;
 	for(i = 0; i < size / 2; i++)
@@ -290,7 +353,7 @@ void rotate(int new[16][16])
 	}
 }
 
-bool lefta(int new[16][16])
+bool lefta(int new[16][16])//swipe left(no save copy(old[][]) created)
 {
 	bool move = 0;
 	int i;
@@ -302,7 +365,7 @@ bool lefta(int new[16][16])
 	return move;	      
 }
        
-bool up(int new[16][16],int old[16][16]) 
+bool up(int new[16][16],int old[16][16]) //swipe up
 {
 	bool move=0;
 	restoreold(new,old);
@@ -311,7 +374,7 @@ bool up(int new[16][16],int old[16][16])
 	rotate(new);rotate(new);rotate(new);
 	return move;
 }
-bool left(int new[16][16],int old[16][16]) 
+bool left(int new[16][16],int old[16][16]) //swipe left(save copy(old[][]) created)
 {
 	bool move = 0;
         move =lefta(new);
@@ -319,7 +382,7 @@ bool left(int new[16][16],int old[16][16])
 	return move;
 }
 
-bool down(int new[16][16],int old[16][16]) 
+bool down(int new[16][16],int old[16][16]) //swipe down
 {
 	bool move=0;
 	restoreold(new,old);
@@ -329,7 +392,7 @@ bool down(int new[16][16],int old[16][16])
 	return move;
 }
 
-bool right(int new[16][16],int old[16][16]) 
+bool right(int new[16][16],int old[16][16]) //swipe right
 {
 	bool move=0;
 	restoreold(new,old);
@@ -339,9 +402,9 @@ bool right(int new[16][16],int old[16][16])
 	return move;
 }
 
-bool gameover(int new[16][16])
+bool gameover(int new[16][16])//check if the game has been lost
 {
-  int i, j,list[64][2];
+  int i, j,list[256][2];
   if(findempty(new,list)>0)
     {
       return 0;
