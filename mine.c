@@ -100,10 +100,12 @@ void rules();
 
 int main(int argc, char *argv[]){
 	
-	if(strcmp(argv[1] , "-h") == 0){
+	if(argc>1 && strcmp(argv[1] , "-h") == 0){
 		rules();
 		return 0;
 	}
+	else{
+		
 	
 	
 		
@@ -197,7 +199,7 @@ int main(int argc, char *argv[]){
 			return 0;
 		}
                 c=getchar();
-	
+	}
 	return 0;
 }
 void un(matrix e[11][11],int i,int j)/*unlock neighbouring tiles(to i,j)*/
