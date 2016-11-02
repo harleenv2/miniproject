@@ -1,0 +1,37 @@
+2048 GAME :
+
+The objective of the game is to get the number 2048 using additions of the number two and its multiples.
+
+You will have a grid of 16 tiles. Two numbers will be given: usually two number twos, maybe number four.
+
+Move up or down, left or right trying to join two equal numbers.
+
+When two equal numbers are in touch, they will add up.
+
+If we are run out of equal numbers on our grid, or we can not put them in touch, the game will provide us another two, a four or even an eight so we can keep on playing. If there are no free tiles on our grid, the game ends.
+
+By adding numbers, we get higher numbers and we can approach to 2048, which is the goal of the game.
+
+HOW TO PLAY:
+ARROW KEYS OR A,S,D,W KEYS CAN BE USED TO PLAY PRESS ENTER AFTER INPUT 
+GAME CAN BE PLAYED ON 2*2 - 16*16 GRID 
+
+MINESWEEPER GAME:
+
+Uncover a mine, and the game ends.
+Uncover an empty square, and you keep playing.
+Uncover a number, and it tells you how many mines lay hidden in the eight surrounding squares—information you use to deduce which nearby squares are safe to click.
+
+HOW TO PLAY:
+ TO UNLOCK A TILE - PRESS eXY
+ WHERE X IS THE X COORDINATE 
+       Y IS THE Y COORDINATE
+       
+ TO FLAG A TILE- PRESS fXY
+ WHERE  X IS THE X COORDINATE 
+       Y IS THE Y COORDINATE
+       
+TO REMOVE A FLAG - PRESS gXY
+WHERE X IS THE X COORDINATE 
+       Y IS THE Y COORDINATE.
+       
