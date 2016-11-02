@@ -100,12 +100,12 @@ void rules();
 
 int main(int argc, char *argv[]){
 	
-	if(argc>1 &&strcmp(argv[1] , "-h") == 0){
+	if(strcmp(argv[1] , "-h") == 0){
 		rules();
 		return 0;
 	}
 	
-	else{
+	
 		
 	matrix e[11][11];/*create a two-dimensional array of size 11*11.note- the objectsrepresented by e[x][0],e[0][x],e[10][x] and e[x][10] wont be represented on the screen. */
 	initiate(e);
@@ -197,9 +197,9 @@ int main(int argc, char *argv[]){
 			return 0;
 		}
                 c=getchar();
-	}
+	
 	return 0;
-}}
+}
 void un(matrix e[11][11],int i,int j)/*unlock neighbouring tiles(to i,j)*/
 {
 	int x , y ;
